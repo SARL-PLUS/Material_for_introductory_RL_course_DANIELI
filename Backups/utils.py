@@ -1,9 +1,8 @@
 import random
-from itertools import count
+from itertools import count, cycle
+from Mars_Rover_env import MarsRoverEnv
 
-# from tqdm.notebook import tqdm
-from tqdm.auto import tqdm         # safest single-line fix
-from sublementary.Mars_Rover_env import MarsRoverEnv
+
 
 import matplotlib.pyplot as plt
 from tqdm.auto import tqdm
@@ -83,6 +82,40 @@ def print_state_value_function(V, P, n_cols=4, prec=3, title='State-value functi
             print(str(s).zfill(2), '{}'.format(np.round(v, prec)).rjust(6), end=" ")
         if (s + 1) % n_cols == 0: print("|")
 
+
+def plot_value_function_snapshots(title, V_track, episodes, V_true=None):
+    """
+    Plot the state–value estimates for a handful of episode indices side‑by‑side,
+    optionally together with the true value function.
+
+    Parameters
+    ----------
+    title : str
+        Figure title.
+    V_track : ndarray
+        Array of shape (n_episodes, n_states) that stores the running
+        state‑value estimates.
+    episodes : Iterable[int]
+        Episode indices (0‑based) to visualise, e.g. [0, 1, 10, 100].
+    V_true : ndarray or None
+        If provided, the true state‑value function will be overlaid.
+    """
+    episodes = [ep for ep in episodes if ep < V_track.shape[0]]
+    plt.figure(figsize=(8, 4))
+    for ep in episodes:
+        plt.plot(V_track[ep], marker='o', label=f'Episode {ep}')
+    if V_true is not None:
+        plt.plot(V_true, linewidth=2, color='lime', label='True V')
+
+    plt.axhline(y=5.5, color='black', linestyle='--')
+    plt.xlim(1, 5)
+    plt.ylim(1, 10)
+    plt.xlabel('State')
+    plt.ylabel('Value')
+    plt.title(title)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
 import numpy as np
 from tqdm.auto import tqdm
 
@@ -226,89 +259,6 @@ def td(pi,
 
     return V.copy(), V_track, targets
 
-#
-# def mc_prediction(pi,
-#                   env,
-#                   gamma=1.0,
-#                   init_alpha=0.5,
-#                   min_alpha=0.01,
-#                   alpha_decay_ratio=0.5,
-#                   n_episodes=500,
-#                   max_steps=200,
-#                   first_visit=True,
-#                   **kwargs):
-#     nS = env.observation_space.n
-#     discounts = np.logspace(0,
-#                             max_steps,
-#                             num=max_steps,
-#                             base=gamma,
-#                             endpoint=False)
-#     if 'constant_alpha' in kwargs:
-#         alphas = np.ones(n_episodes) * kwargs.get('constant_alpha')
-#     else:
-#         alphas = learn_rate_decay_schedule(init_alpha,
-#                                            min_alpha,
-#                                            alpha_decay_ratio,
-#                                            n_episodes)
-#     V_init = kwargs.get('init_V') if 'init_V' in kwargs else 0
-#
-#     V = np.ones(nS, dtype=np.float64) * V_init  # inits of V
-#     V[0] = V[nS - 1] = 0
-#     V_track = np.zeros((n_episodes, nS), dtype=np.float64)
-#     targets = {state: [] for state in range(nS)}
-#
-#     for e in tqdm(range(n_episodes), leave=False):
-#         trajectory = generate_trajectory(pi,
-#                                          env,
-#                                          max_steps)
-#         visited = np.zeros(nS, dtype=bool)
-#         for t, (state, _, reward, _, _) in enumerate(trajectory):
-#             if visited[state] and first_visit:
-#                 continue
-#             visited[state] = True
-#
-#             n_steps = len(trajectory[t:])
-#             G = np.sum(discounts[:n_steps] * trajectory[t:, 2])
-#             targets[state].append(G)
-#             mc_error = G - V[state]
-#             V[state] = V[state] + alphas[e] * mc_error
-#         V_track[e] = V
-#     return V.copy(), V_track, targets
-#
-#
-# def td(pi,
-#        env,
-#        gamma=1.0,
-#        init_alpha=0.5,
-#        min_alpha=0.01,
-#        alpha_decay_ratio=0.5,
-#        n_episodes=500, **kwargs):
-#     nS = env.observation_space.n
-#     V_init = kwargs.get('init_V') if 'init_V' in kwargs else 0
-#     V = np.ones(nS, dtype=np.float64) * V_init  # inits of V
-#     V[0] = V[nS - 1] = 0
-#     V_track = np.zeros((n_episodes, nS), dtype=np.float64)
-#     targets = {state: [] for state in range(nS)}
-#     if 'constant_alpha' in kwargs:
-#         alphas = np.ones(n_episodes) * kwargs.get('constant_alpha')
-#     else:
-#         alphas = learn_rate_decay_schedule(init_alpha,
-#                                            min_alpha,
-#                                            alpha_decay_ratio,
-#                                            n_episodes)
-#     for e in tqdm(range(n_episodes), leave=False):
-#         state, done = env.reset(), False
-#         while not done:
-#             action = pi(state)
-#             next_state, reward, done, _ = env.step(action)
-#             td_target = reward + gamma * V[next_state] * (not done)
-#             targets[state].append(td_target)
-#             td_error = td_target - V[state]
-#             V[state] = V[state] + alphas[e] * td_error
-#             state = next_state
-#         V_track[e] = V
-#     return V, V_track, targets
-#
 
 def plot_value_function(title, V_track, V_true=None, log=False, limit_value=0.05, limit_items=7):
     np.random.seed(123)
