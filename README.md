@@ -98,24 +98,22 @@ Explore the complete implementation and contributions in the GitHub repository:
 
 ## Authors
 
-**Simon Hirlaender, Dipl.-Ing. Dr., BSc**  
-- Role: Head of **SARL Team**, IDA Lab, University of Salzburg  
-- Expertise: Reinforcement learning, dynamic optimization, control systems  
-- Contact: [simon.hirlaender@plus.ac.at](mailto:simon.hirlaender@plus.ac.at)
+**Simon Hirlaender, Dipl.-Ing. Dr., BSc** – Head, SARL Team, IDA Lab, University of Salzburg  
+Contact: **simon.hirlaender@plus.ac.at**
 
-**Olga Mironova, BA MSc**  
-- Role: Researcher, IDA Lab, University of Salzburg  
-- Expertise: Machine learning and intelligent systems  
-- Contact: [olga.mironova@plus.ac.at](mailto:olga.mironova@plus.ac.at)
+**Olga Mironova, BA MSc** – Researcher, SARL Team, IDA Lab, University of Salzburg  
+Contact: **olga.mironova@plus.ac.at**
+
 
 ---
 
 ## Institutional Support
 
-The developments are supported by **IDA Lab** at the University of Salzburg, with projects led by the **Smart Analytics & Reinforcement Learning (SARL)** team.
+• **IDA Lab** – Intelligent Data Analytics Lab, University of Salzburg  
+  Website: <https://idalab.at>  
 
-Learn more about:
-- [IDA Lab](https://ida.cs.sbg.ac.at/)
-- [SARL Team](https://www.plus.ac.at/aihi/der-fachbereich/ida-lab/teams/sarl/?lang=en)
+• **SARL (Smart Analytics & Reinforcement Learning)** – Research team within IDA Lab  
+  Website: <https://sarl-plus.github.io>
+
 
 ---
