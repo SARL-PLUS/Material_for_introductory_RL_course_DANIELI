@@ -3,7 +3,7 @@
   <figcaption><strong>Figure:</strong> A rover navigating a linear Martian landscape.</figcaption>
 </figure>
 
-# Mars Rover: Control and Prediction
+# Mars Rover: Control and Prediction for Danieli Automation introductory course in RL
 
 This repository showcases an implementation of the **Mars Rover Environment**, designed to provide a practical and accessible setting for studying reinforcement learning (RL) methods. Through a simulated linear Martian landscape, key RL techniques are analyzed to optimize the rover's navigation and task performance.
 
