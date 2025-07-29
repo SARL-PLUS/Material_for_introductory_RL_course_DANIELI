@@ -98,10 +98,10 @@ Explore the complete implementation and contributions in the GitHub repository:
 
 ## Authors
 
-**Simon Hirlaender, Dipl.-Ing. Dr., BSc** – Head, SARL Team, IDA Lab, University of Salzburg  
+**Simon Hirlaender** – Team Lead, SARL Team, IDA Lab, University of Salzburg  
 Contact: **simon.hirlaender@plus.ac.at**
 
-**Olga Mironova, BA MSc** – Researcher, SARL Team, IDA Lab, University of Salzburg  
+**Olga Mironova** – SARL Team, IDA Lab, University of Salzburg  
 Contact: **olga.mironova@plus.ac.at**
 
 

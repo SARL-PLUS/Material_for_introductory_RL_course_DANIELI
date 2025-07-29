@@ -1,6 +1,5 @@
 '''
 Simon Hirlaender
-For the course Reinforcement Learning 2024 - 536.111 at PLUS University
 This script defines a framework for simulating a simplified Mars Rover navigation task as a reinforcement learning environment, leveraging the Gymnasium API. It includes the implementation of a discrete environment class, a specific Mars Rover environment, and a wrapper to convert the Mars Rover environment from a Markov Decision Process (MDP) to a Markov Reward Process (MRP) by applying a fixed policy.
 
 **Key Components of the Script:**
